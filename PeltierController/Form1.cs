@@ -107,8 +107,8 @@ namespace PeltierController
             //New timer object
             _timer = new System.Threading.Timer(Callback, null, 0, 1000);
 
-            label2.Text = "Power Off";
-            label6.Text = "Not enabled";
+            label2.Text = "Stroom uit";
+            label6.Text = "Niet aan";
             label4.Text = "0";
 
             button1.Enabled = false;
@@ -137,11 +137,11 @@ namespace PeltierController
                 Serial.Write("^RWD 0_");
                 //Send formatted command
                 Serial.Write(command);
-                MessageBox.Show("Sent PWM command: " + command);
+                MessageBox.Show("Stuur PWM commando: " + command);
 
                 label4.Text = "0";
-                label6.Text = "No PWM";
-                label2.Text = "Powered off";
+                label6.Text = "Geen PWM";
+                label2.Text = "Stroom uit";
 
                 coolingStatus = 0;
                 peltierStatus = false;
@@ -168,7 +168,7 @@ namespace PeltierController
                 }
                 catch
                 {
-                    MessageBox.Show("No COM port selected!");
+                    MessageBox.Show("Geen COM port geselecteerd!");
                     return;
                 }
 
@@ -187,7 +187,7 @@ namespace PeltierController
                     Serial.Open();
 
                     //Change button text to disconnect, and disable the combobox & COM ports button
-                    button3.Text = "Disconnect";
+                    button3.Text = "Gedisconnect";
                     comboBox1.Enabled = false;
                     button2.Enabled = false;
 
@@ -216,7 +216,7 @@ namespace PeltierController
                 }
                 catch
                 {
-                    MessageBox.Show("Error: Unable to close COM port. Close all applications using this port");
+                    MessageBox.Show("Error: Kan COM port niet sluiten. Sluit alle aplicaties die deze port gebruiken");
                     return;
                 }
             }
@@ -229,7 +229,7 @@ namespace PeltierController
             //If no cooling mode selected, return function and give error
             if (coolingStatus == 0)
             {
-                MessageBox.Show("Please select cooling or heating mode first");
+                MessageBox.Show("Selecteer afkoelen of opwarmen modes eerst");
                 return;
             }
 
